@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarot Reader - Mystical Card Readings</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Landing Section -->
+    <section id="landing" class="section active">
+        <div class="container">
+            <h1 class="title">✦ Tarot Reader ✦</h1>
+            <p class="subtitle">Discover the wisdom of the cards</p>
+            <button class="btn btn-primary" onclick="showSection('selection')">Begin Your Reading</button>
+        </div>
+    </section>
+
+    <!-- Reading Selection Section -->
+    <section id="selection" class="section">
+        <div class="container">
+            <h2>Choose Your Reading</h2>
+            <div class="spread-options">
+                <div class="spread-card" onclick="startReading('single')">
+                    <h3>Single Card</h3>
+                    <p>Quick guidance for your day</p>
+                </div>
+                <div class="spread-card" onclick="startReading('three')">
+                    <h3>Past • Present • Future</h3>
+                    <p>Three-card spread for deeper insight</p>
+                </div>
+                <div class="spread-card" onclick="startReading('problem')">
+                    <h3>Problem • Solution</h3>
+                    <p>Navigate challenges with clarity</p>
+                </div>
+            </div>
+            <button class="btn btn-secondary" onclick="showSection('landing')">Back</button>
+        </div>
+    </section>
+
+    <!-- Game Section -->
+    <section id="game" class="section">
+        <div class="container">
+            <h2 id="spread-title">Your Reading</h2>
+            <div id="card-positions" class="card-positions"></div>
+            <div class="game-controls">
+                <button class="btn btn-secondary" onclick="shuffleDeck()">Shuffle Again</button>
+                <button class="btn btn-secondary" onclick="showSection('selection')">New Reading</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Card Detail Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-body">
+                <div class="card-display" id="modal-card"></div>
+                <div class="card-info">
+                    <h2 id="modal-card-name"></h2>
+                    <p class="position-label" id="modal-position"></p>
+                    <p class="orientation-badge" id="modal-orientation"></p>
+
+                    <div class="tabs">
+                        <button class="tab active" onclick="switchTab('meaning')">Meaning</button>
+                        <button class="tab" onclick="switchTab('symbolism')">Symbolism</button>
+                        <button class="tab" onclick="switchTab('history')">History</button>
+                    </div>
+
+                    <div id="meaning-content" class="tab-content active">
+                        <h3>Interpretation</h3>
+                        <p id="modal-interpretation"></p>
+                        <h4>Full Meaning</h4>
+                        <p id="modal-meaning"></p>
+                        <div id="modal-keywords" class="keywords"></div>
+                    </div>
+
+                    <div id="symbolism-content" class="tab-content">
+                        <h3>Symbolism</h3>
+                        <div id="modal-symbolism"></div>
+                    </div>
+
+                    <div id="history-content" class="tab-content">
+                        <h3>Historical Context</h3>
+                        <div id="modal-history"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="cards.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
