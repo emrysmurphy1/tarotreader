@@ -26,6 +26,21 @@ function showSection(sectionId) {
     section.classList.remove('active');
   });
   document.getElementById(sectionId).classList.add('active');
+
+  // Update active nav link
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.classList.remove('active');
+  });
+  const activeLink = document.querySelector(`[data-section="${sectionId}"]`);
+  if (activeLink) {
+    activeLink.classList.add('active');
+  }
+
+  // Close mobile menu if open
+  const nav = document.querySelector('nav');
+  if (nav) {
+    nav.classList.remove('mobile-open');
+  }
 }
 
 // Start a reading
@@ -89,10 +104,14 @@ function drawCard(positionIndex) {
 function createCardElement(card, orientation) {
   const rotateClass = orientation === 'reversed' ? 'rotated' : '';
   return `
-    <div class="card ${rotateClass}" style="border-color: ${card.color}">
-      <div class="card-number">${card.number}</div>
-      <div class="card-name-small">${card.name}</div>
-      <div class="card-symbol">✦</div>
+    <div class="card-image-wrapper ${rotateClass}">
+      <img src="${card.image}" alt="${card.name}" class="card-image"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="card-placeholder" style="display:none; border-color: ${card.color}">
+        <div class="card-number">${card.number}</div>
+        <div class="card-name-small">${card.name}</div>
+        <div class="card-symbol">✦</div>
+      </div>
     </div>
   `;
 }
@@ -124,10 +143,14 @@ function openCardModal(positionIndex) {
   const modalCard = document.getElementById('modal-card');
   const rotateClass = orientation === 'reversed' ? 'rotated' : '';
   modalCard.innerHTML = `
-    <div class="card large ${rotateClass}" style="border-color: ${card.color}">
-      <div class="card-number">${card.number}</div>
-      <div class="card-name-small">${card.name}</div>
-      <div class="card-symbol">✦</div>
+    <div class="card-image-wrapper large ${rotateClass}">
+      <img src="${card.image}" alt="${card.name}" class="card-image large"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="card-placeholder large" style="display:none; border-color: ${card.color}">
+        <div class="card-number">${card.number}</div>
+        <div class="card-name-small">${card.name}</div>
+        <div class="card-symbol">✦</div>
+      </div>
     </div>
   `;
 
@@ -173,6 +196,84 @@ function switchTab(tabName) {
   document.getElementById(`${tabName}-content`).classList.add('active');
   document.querySelector(`[onclick="switchTab('${tabName}')"]`).classList.add('active');
 }
+
+// Card Reference Page
+function initializeCardReference() {
+  const grid = document.getElementById('card-grid');
+  if (!grid) return;
+
+  grid.innerHTML = majorArcana.map(card => `
+    <div class="reference-card" onclick="openCardModalFromReference(${card.id})">
+      <img src="${card.image}" alt="${card.name}" class="reference-card-image"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="reference-card-placeholder" style="display:none;">
+        <div class="card-symbol">✦</div>
+      </div>
+      <div class="reference-card-info">
+        <div class="reference-card-number">${card.number}</div>
+        <div class="reference-card-name">${card.name}</div>
+        <div class="reference-card-tagline">${card.keywords.slice(0, 3).join(' • ')}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function openCardModalFromReference(cardId) {
+  const card = majorArcana.find(c => c.id === cardId);
+  if (!card) return;
+
+  // Populate modal without position context
+  document.getElementById('modal-card-name').textContent = card.name;
+  document.getElementById('modal-position').textContent = 'Card Reference';
+  document.getElementById('modal-orientation').textContent = '↑ Upright';
+
+  // Card display
+  const modalCard = document.getElementById('modal-card');
+  modalCard.innerHTML = `
+    <div class="card-image-wrapper large">
+      <img src="${card.image}" alt="${card.name}" class="card-image large"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="card-placeholder large" style="display:none; border-color: ${card.color}">
+        <div class="card-number">${card.number}</div>
+        <div class="card-name-small">${card.name}</div>
+        <div class="card-symbol">✦</div>
+      </div>
+    </div>
+  `;
+
+  // Meaning tab (upright only)
+  const meaning = card.upright;
+  document.getElementById('modal-interpretation').textContent = meaning.short;
+  document.getElementById('modal-meaning').textContent = meaning.detailed;
+
+  // Keywords
+  const keywordsHtml = card.keywords.map(kw => `<span class="keyword">${kw}</span>`).join('');
+  document.getElementById('modal-keywords').innerHTML = `<strong>Keywords:</strong> ${keywordsHtml}`;
+
+  // Symbolism tab
+  const symbolismHtml = card.symbolism.map(sym => `<li>${sym}</li>`).join('');
+  document.getElementById('modal-symbolism').innerHTML = `<ul>${symbolismHtml}</ul>`;
+
+  // History tab
+  document.getElementById('modal-history').innerHTML = `<p>${card.history}</p>`;
+
+  // Show modal
+  document.getElementById('modal').style.display = 'flex';
+
+  // Reset to meaning tab
+  switchTab('meaning');
+}
+
+// Toggle mobile menu
+function toggleMobileMenu() {
+  const nav = document.querySelector('nav');
+  nav.classList.toggle('mobile-open');
+}
+
+// Initialize reference page on load
+document.addEventListener('DOMContentLoaded', () => {
+  initializeCardReference();
+});
 
 // Close modal when clicking outside
 window.onclick = function(event) {
