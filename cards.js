@@ -1,8 +1,14 @@
+// Helper function to get image path from card name
+function getCardImagePath(cardName) {
+  return cardName.toLowerCase().replace(/\s+/g, '').replace('the', '') + '.jpg';
+}
+
 const majorArcana = [
   {
     id: 0,
     name: "The Fool",
     number: "0",
+    image: "thefool.jpg",
     upright: {
       short: "New beginnings, innocence, spontaneity, free spirit",
       detailed: "The Fool represents the beginning of all creative endeavors and new phases of life. This card encourages you to take a leap of faith and trust in the universe. It signifies unlimited potential and the courage to embark on new journeys without fear of the unknown."
@@ -20,6 +26,7 @@ const majorArcana = [
     id: 1,
     name: "The Magician",
     number: "I",
+    image: "magician.jpg",
     upright: {
       short: "Manifestation, resourcefulness, power, inspired action",
       detailed: "The Magician represents the ability to manifest your desires and turn ideas into reality. You have all the tools and resources you need to succeed. This card signals a time of heightened creative power and the ability to channel universal energy."
@@ -37,6 +44,7 @@ const majorArcana = [
     id: 2,
     name: "The High Priestess",
     number: "II",
+    image: "highpriestess.jpg",
     upright: {
       short: "Intuition, sacred knowledge, divine feminine, subconscious mind",
       detailed: "The High Priestess represents intuition, sacred knowledge, and the subconscious mind. She encourages you to look beyond the obvious and trust your inner voice. This card signals a time to listen to your intuition and explore your spiritual side."
@@ -54,6 +62,7 @@ const majorArcana = [
     id: 3,
     name: "The Empress",
     number: "III",
+    image: "empress.jpg",
     upright: {
       short: "Femininity, beauty, nature, nurturing, abundance",
       detailed: "The Empress represents abundance, nurturing, and the beauty of nature. She encourages creativity and connection with the natural world. This card signals a time of growth, fertility, and bringing projects or relationships to fruition."
@@ -71,6 +80,7 @@ const majorArcana = [
     id: 4,
     name: "The Emperor",
     number: "IV",
+    image: "emperor.jpg",
     upright: {
       short: "Authority, structure, control, fatherhood, leadership",
       detailed: "The Emperor represents authority, structure, and leadership. He encourages you to take control of your life through discipline and organization. This card signals a time to establish order and assert your power with wisdom."
@@ -88,6 +98,7 @@ const majorArcana = [
     id: 5,
     name: "The Hierophant",
     number: "V",
+    image: "hierophant.jpg",
     upright: {
       short: "Spiritual wisdom, tradition, conformity, institutions, teaching",
       detailed: "The Hierophant represents traditional values, spiritual wisdom, and established institutions. He encourages you to seek knowledge from trusted sources and honor traditions. This card signals a time to follow established systems or seek a mentor."
@@ -105,6 +116,7 @@ const majorArcana = [
     id: 6,
     name: "The Lovers",
     number: "VI",
+    image: "lovers.jpg",
     upright: {
       short: "Love, harmony, relationships, values alignment, choices",
       detailed: "The Lovers represents deep connections, harmony, and important choices. Beyond romance, this card speaks to alignment of values and the union of opposites. It signals a time to make choices that reflect your true values and beliefs."
@@ -122,6 +134,7 @@ const majorArcana = [
     id: 7,
     name: "The Chariot",
     number: "VII",
+    image: "chariot.jpg",
     upright: {
       short: "Control, willpower, success, determination, action",
       detailed: "The Chariot represents victory through determination and willpower. You have the strength to overcome obstacles and achieve your goals. This card signals a time of focused action and maintaining control through competing forces."
@@ -139,6 +152,7 @@ const majorArcana = [
     id: 8,
     name: "Strength",
     number: "VIII",
+    image: "strength.jpg",
     upright: {
       short: "Courage, inner strength, patience, compassion, control",
       detailed: "Strength represents inner fortitude, courage, and compassion. True strength comes from patience and gentle control rather than force. This card signals a time to tame your inner beasts through love and understanding."
@@ -156,6 +170,7 @@ const majorArcana = [
     id: 9,
     name: "The Hermit",
     number: "IX",
+    image: "hermit.jpg",
     upright: {
       short: "Soul searching, introspection, inner guidance, solitude, wisdom",
       detailed: "The Hermit represents introspection, soul searching, and inner wisdom. Sometimes we need solitude to hear our inner voice. This card signals a time to turn inward, seek answers within, and share wisdom gained from experience."
@@ -173,6 +188,7 @@ const majorArcana = [
     id: 10,
     name: "Wheel of Fortune",
     number: "X",
+    image: "wheeloffortune.jpg",
     upright: {
       short: "Good luck, karma, life cycles, destiny, turning point",
       detailed: "The Wheel of Fortune represents the cycles of life, karma, and destiny. What goes around comes around, and change is inevitable. This card signals a turning point or stroke of luck, reminding you that life is always in motion."
@@ -190,6 +206,7 @@ const majorArcana = [
     id: 11,
     name: "Justice",
     number: "XI",
+    image: "justice.jpg",
     upright: {
       short: "Justice, fairness, truth, cause and effect, law",
       detailed: "Justice represents fairness, truth, and the law of cause and effect. Every action has consequences. This card signals a time when justice will be served, decisions must be made fairly, and truth will come to light."
@@ -207,6 +224,7 @@ const majorArcana = [
     id: 12,
     name: "The Hanged Man",
     number: "XII",
+    image: "hangedman.jpg",
     upright: {
       short: "Surrender, letting go, new perspective, pause, sacrifice",
       detailed: "The Hanged Man represents surrender, suspension, and seeing things from a new perspective. Sometimes we must let go and surrender to gain enlightenment. This card signals a time to pause, sacrifice the old, and embrace new viewpoints."
@@ -224,6 +242,7 @@ const majorArcana = [
     id: 13,
     name: "Death",
     number: "XIII",
+    image: "death.jpg",
     upright: {
       short: "Endings, transformation, transition, letting go, change",
       detailed: "Death represents transformation, endings, and new beginnings. This is rarely about physical death but rather the end of one phase and the start of another. This card signals profound change and the need to release what no longer serves you."
@@ -241,6 +260,7 @@ const majorArcana = [
     id: 14,
     name: "Temperance",
     number: "XIV",
+    image: "temperance.jpg",
     upright: {
       short: "Balance, moderation, patience, purpose, meaning",
       detailed: "Temperance represents balance, moderation, and finding the middle path. Patience and careful blending of opposing elements create harmony. This card signals a time to find balance, practice moderation, and seek higher purpose."
@@ -258,6 +278,7 @@ const majorArcana = [
     id: 15,
     name: "The Devil",
     number: "XV",
+    image: "devil.jpg",
     upright: {
       short: "Bondage, addiction, materialism, shadow self, attachment",
       detailed: "The Devil represents bondage, addiction, and unhealthy attachments. We are often imprisoned by our own choices and beliefs. This card signals a time to examine what controls you and recognize that the chains are often self-imposed."
@@ -275,6 +296,7 @@ const majorArcana = [
     id: 16,
     name: "The Tower",
     number: "XVI",
+    image: "tower.jpg",
     upright: {
       short: "Sudden change, upheaval, chaos, revelation, awakening",
       detailed: "The Tower represents sudden upheaval, destruction of false beliefs, and dramatic change. Sometimes structures must fall for truth to emerge. This card signals unexpected change that, while difficult, clears the way for authentic growth."
@@ -292,6 +314,7 @@ const majorArcana = [
     id: 17,
     name: "The Star",
     number: "XVII",
+    image: "star.jpg",
     upright: {
       short: "Hope, faith, renewal, inspiration, serenity",
       detailed: "The Star represents hope, inspiration, and renewal after darkness. After the storm comes clarity and peace. This card signals a time of healing, renewed faith, and connection to the divine. Your wishes may be fulfilled."
@@ -309,6 +332,7 @@ const majorArcana = [
     id: 18,
     name: "The Moon",
     number: "XVIII",
+    image: "moon.jpg",
     upright: {
       short: "Illusion, fear, anxiety, subconscious, intuition",
       detailed: "The Moon represents illusion, the subconscious, and navigating through uncertainty. Not everything is as it seems. This card signals a time to trust your intuition, face your fears, and explore the deeper truths hidden beneath the surface."
@@ -326,6 +350,7 @@ const majorArcana = [
     id: 19,
     name: "The Sun",
     number: "XIX",
+    image: "sun.jpg",
     upright: {
       short: "Joy, success, celebration, vitality, positivity",
       detailed: "The Sun represents joy, success, and vitality. Everything is illuminated and clear. This card signals a time of celebration, achievement, and pure happiness. Success is yours, and your authentic self shines brightly."
@@ -343,6 +368,7 @@ const majorArcana = [
     id: 20,
     name: "Judgement",
     number: "XX",
+    image: "judgement.jpg",
     upright: {
       short: "Reflection, reckoning, awakening, renewal, purpose",
       detailed: "Judgement represents reflection, absolution, and awakening to your higher calling. It's time to evaluate your life and rise to a higher level of consciousness. This card signals rebirth, forgiveness, and answering your true calling."
@@ -360,6 +386,7 @@ const majorArcana = [
     id: 21,
     name: "The World",
     number: "XXI",
+    image: "world.jpg",
     upright: {
       short: "Completion, accomplishment, travel, fulfillment, wholeness",
       detailed: "The World represents completion, accomplishment, and wholeness. You have reached the end of a cycle and achieved your goals. This card signals success, fulfillment, and the integration of all lessons learned. The world is yours."

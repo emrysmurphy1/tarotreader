@@ -7,6 +7,24 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-brand">✦ Tarot Reader ✦</div>
+            <button class="hamburger" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links">
+                <a href="#" class="nav-link active" data-section="landing" onclick="showSection('landing')">Home</a>
+                <a href="#" class="nav-link" data-section="selection" onclick="showSection('selection')">Get Reading</a>
+                <a href="#" class="nav-link" data-section="history" onclick="showSection('history')">History</a>
+                <a href="#" class="nav-link" data-section="reference" onclick="showSection('reference')">Card Reference</a>
+            </div>
+        </div>
+    </nav>
+
     <!-- Landing Section -->
     <section id="landing" class="section active">
         <div class="container">
@@ -47,6 +65,60 @@
                 <button class="btn btn-secondary" onclick="shuffleDeck()">Shuffle Again</button>
                 <button class="btn btn-secondary" onclick="showSection('selection')">New Reading</button>
             </div>
+        </div>
+    </section>
+
+    <!-- History Section -->
+    <section id="history" class="section">
+        <div class="container history-content">
+            <h2>The History of Tarot</h2>
+
+            <div class="history-section">
+                <h3>Introduction to Tarot</h3>
+                <p>Tarot is a centuries-old system of divination, self-reflection, and spiritual guidance. Through symbolic imagery and archetypal wisdom, tarot cards offer insights into our past, present, and potential futures. Each card tells a story, and together they form a rich tapestry of human experience.</p>
+            </div>
+
+            <div class="history-section">
+                <h3>Origins and Evolution</h3>
+                <p>Tarot cards originated in 15th century Europe, initially as playing cards for games among Italian nobility. By the 18th century, they had evolved into tools for divination and spiritual exploration. The Major Arcana, the 22 trump cards representing life's great mysteries, form the spiritual core of the tarot deck.</p>
+                <p>From Italian courts to French salons, and eventually to mystical societies across Europe and America, tarot spread as both an art form and a spiritual practice. Each culture that embraced tarot added layers of meaning, connecting the cards to astrology, Kabbalah, alchemy, and other esoteric traditions.</p>
+            </div>
+
+            <div class="history-section">
+                <h3>The Rider-Waite-Smith Deck</h3>
+                <p>The images you see on this site come from the Rider-Waite-Smith tarot deck, first published in 1909. This revolutionary deck was created through the collaboration of Arthur Edward Waite, a prominent occultist and member of the Hermetic Order of the Golden Dawn, and Pamela Colman Smith, a talented artist and fellow Golden Dawn member.</p>
+                <p><strong>Pamela Colman Smith</strong>, often overlooked in tarot history, was the true visual genius behind the deck. She created all 78 card illustrations, including the innovative fully-illustrated Minor Arcana—a first in tarot history. Her artistic vision, blending medieval symbolism, Art Nouveau aesthetics, and mystical philosophy, made tarot accessible and meaningful to millions.</p>
+                <p>The Rider-Waite-Smith deck became the most influential tarot deck in the world, serving as the foundation for countless modern interpretations. Its clear symbolism and intuitive imagery have taught generations of readers how to connect with the cards.</p>
+            </div>
+
+            <div class="history-section">
+                <h3>How to Read Tarot</h3>
+                <p><strong>Preparing for a Reading:</strong> Approach the cards with an open mind and clear intention. Take a moment to center yourself, breathe deeply, and formulate your question or area of focus.</p>
+
+                <p><strong>Understanding Card Orientations:</strong></p>
+                <ul>
+                    <li><strong>Upright:</strong> When a card appears right-side up, it generally represents the card's traditional meaning, positive aspects, or direct manifestation of its energy.</li>
+                    <li><strong>Reversed:</strong> When a card appears upside-down, it may indicate blocked energy, internal challenges, or the shadow side of the card's meaning. Reversed cards aren't necessarily negative—they often point to inner work or lessons in progress.</li>
+                </ul>
+
+                <p><strong>Reading Spread Positions:</strong> The position of each card in a spread adds context to its meaning. For example, in a Past-Present-Future spread, the same card will have different implications depending on whether it represents what has been, what is, or what may be.</p>
+
+                <p><strong>Trusting Your Intuition:</strong> While traditional meanings provide a foundation, your personal intuition and the specific context of your question are equally important. Notice which symbols in the card catch your eye, what feelings arise, and how the cards relate to each other in the spread.</p>
+
+                <p><strong>Tarot as a Tool, Not Fortune-Telling:</strong> Tarot doesn't predict a fixed future—it illuminates possibilities, reveals hidden influences, and offers guidance for your journey. The power of tarot lies in helping you access your own inner wisdom and see your situation from new perspectives.</p>
+            </div>
+
+            <button class="btn btn-primary" onclick="showSection('landing')" style="margin-top: 30px;">Return Home</button>
+        </div>
+    </section>
+
+    <!-- Card Reference Section -->
+    <section id="reference" class="section">
+        <div class="container">
+            <h2>Major Arcana Reference</h2>
+            <p class="subtitle">Explore all 22 cards of the Major Arcana</p>
+            <div id="card-grid" class="card-grid"></div>
+            <button class="btn btn-secondary" onclick="showSection('landing')" style="margin-top: 40px;">Return Home</button>
         </div>
     </section>
 
